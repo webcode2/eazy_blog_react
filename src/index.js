@@ -1,67 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App,{BlogSingle,Blogs,} from './pages/home/App';
-import Home from"./pages/home/home"
-import Login from"./pages/login/login"
-
-import { createBrowserRouter, RouterProvider} from 'react-router-dom';
-import Layout from './pages/blogs/layout';
-import ErrorPage from './pages/404';
-
-
-const router = createBrowserRouter([
-  {    path: "/bout", element: <Home />,},
-  {    path: "/login", element: <Login />,},
-  
-  {element: <Layout />,
-  path: "articles",   
-  children: [
-    {
-      index:true,
-      element: <Blogs />,
-      path: "all",
-      loader: async () => {        
-        return fetch('https://jsonplaceholder.typicode.com/posts');
-      },
-     
-
-    },
-    {
-      element: <BlogSingle  />,
-      path: ":articlesId",
-      loader: async ({ params }) => {        
-        console.log({params});
-        return fetch(`https://jsonplaceholder.typicode.com/posts/${params.articlesId}`);
-      },
-      children: [
-        {
-          element: <BlogSingle  />,
-          path: "edit",
-          loader: async ({ params }) => {        
-            return[];
-          },
-        },]
-
-    },
-   
-  ],
-},
-
-{    path: "/",        element: <Home/>,},
-{path:"*", element:<ErrorPage/>}
-]);
-
-
-
-
-
-
-
-
-
-
-
+import App, { Blogs, } from './pages/home/App';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

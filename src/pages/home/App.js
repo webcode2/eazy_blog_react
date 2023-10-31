@@ -20,21 +20,6 @@ export default App;
 
 
 
-
-
-
-
-export function Blogs() {
-  const data =useLoaderData()
-  console.log(typeof data);
-  console.log(data);
-  return (
-
-    data.map((e)=><div key={e.id}>{e.title}</div>) 
-  )
-}
-
-
 export function BlogSingle() {
   let data =useLoaderData()
 
